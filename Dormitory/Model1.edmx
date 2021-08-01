@@ -1,0 +1,1643 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DormitoryDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Block">
+          <Key>
+            <PropertyRef Name="BlockNum" />
+          </Key>
+          <Property Name="BlockNum" Type="int" Nullable="false" />
+          <Property Name="DormNum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityCode" />
+          </Key>
+          <Property Name="CityCode" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Province" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dorm">
+          <Key>
+            <PropertyRef Name="DormNum" />
+          </Key>
+          <Property Name="DormNum" Type="int" Nullable="false" />
+          <Property Name="DormName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="UniId" Type="int" Nullable="false" />
+          <Property Name="DormAddress" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DormGender" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DormPhone">
+          <Key>
+            <PropertyRef Name="DormNum" />
+            <PropertyRef Name="DPhone" />
+          </Key>
+          <Property Name="DormNum" Type="int" Nullable="false" />
+          <Property Name="DPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EId" />
+          </Key>
+          <Property Name="EId" Type="int" Nullable="false" />
+          <Property Name="JId" Type="int" Nullable="false" />
+          <Property Name="Mellicode" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeLEtime">
+          <Key>
+            <PropertyRef Name="EId" />
+            <PropertyRef Name="EntranceTime" />
+          </Key>
+          <Property Name="EId" Type="int" Nullable="false" />
+          <Property Name="EntranceTime" Type="datetime" Nullable="false" />
+          <Property Name="LeavingTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Floor">
+          <Key>
+            <PropertyRef Name="FloorNum" />
+            <PropertyRef Name="BlockNum" />
+          </Key>
+          <Property Name="FloorNum" Type="int" Nullable="false" />
+          <Property Name="BlockNum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Jid" />
+          </Key>
+          <Property Name="Jid" Type="int" Nullable="false" />
+          <Property Name="JobName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Salary" Type="int" Nullable="false" />
+          <Property Name="AccessLevel" Type="int" Nullable="false" />
+          <Property Name="workhours" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="LId" />
+          </Key>
+          <Property Name="LId" Type="int" Nullable="false" />
+          <Property Name="LevelDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Major">
+          <Key>
+            <PropertyRef Name="MId" />
+          </Key>
+          <Property Name="MId" Type="int" Nullable="false" />
+          <Property Name="MName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Monitor">
+          <Key>
+            <PropertyRef Name="StudentNum" />
+            <PropertyRef Name="PId" />
+          </Key>
+          <Property Name="StudentNum" Type="int" Nullable="false" />
+          <Property Name="PId" Type="int" Nullable="false" />
+          <Property Name="EId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PublicPlace">
+          <Key>
+            <PropertyRef Name="PId" />
+          </Key>
+          <Property Name="PId" Type="int" Nullable="false" />
+          <Property Name="OpenTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="CloseTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="DormNum" Type="int" Nullable="false" />
+          <Property Name="PType" Type="nchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReportCondition">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="int" Nullable="false" />
+          <Property Name="StudentNum" Type="int" Nullable="false" />
+          <Property Name="SId" Type="int" Nullable="false" />
+          <Property Name="Condition" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ReportCDate" Type="datetime" Nullable="false" />
+          <Property Name="ConditionStatus" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RequestRoom">
+          <Key>
+            <PropertyRef Name="RequestNum" />
+          </Key>
+          <Property Name="RequestNum" Type="int" Nullable="false" />
+          <Property Name="StudentNum" Type="int" Nullable="false" />
+          <Property Name="RoomNum" Type="int" Nullable="false" />
+          <Property Name="BlockNum" Type="int" Nullable="false" />
+          <Property Name="FloorNum" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="RRType" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="RRStatus" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomNum" />
+            <PropertyRef Name="FloorNum" />
+            <PropertyRef Name="BlockNum" />
+          </Key>
+          <Property Name="RoomNum" Type="int" Nullable="false" />
+          <Property Name="FloorNum" Type="int" Nullable="false" />
+          <Property Name="BlockNum" Type="int" Nullable="false" />
+          <Property Name="RoomPrice" Type="int" Nullable="false" />
+          <Property Name="Capacity" Type="int" Nullable="false" />
+          <Property Name="OpenCapacity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentNum" />
+          </Key>
+          <Property Name="StudentNum" Type="int" Nullable="false" />
+          <Property Name="Paid" Type="bit" Nullable="false" />
+          <Property Name="EnteranceYear" Type="int" Nullable="false" />
+          <Property Name="RoomNum" Type="int" />
+          <Property Name="CityCode" Type="int" Nullable="false" />
+          <Property Name="MId" Type="int" Nullable="false" />
+          <Property Name="LId" Type="int" Nullable="false" />
+          <Property Name="FloorNum" Type="int" />
+          <Property Name="BlockNum" Type="int" />
+          <Property Name="Mellicode" Type="int" Nullable="false" />
+          <Property Name="DNType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StudentLEtime">
+          <Key>
+            <PropertyRef Name="StudentNum" />
+            <PropertyRef Name="EntranceTime" />
+          </Key>
+          <Property Name="StudentNum" Type="int" Nullable="false" />
+          <Property Name="EntranceTime" Type="datetime" Nullable="false" />
+          <Property Name="LeavingTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Stuff">
+          <Key>
+            <PropertyRef Name="SId" />
+          </Key>
+          <Property Name="SId" Type="int" Nullable="false" />
+          <Property Name="StufName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FloorNum" Type="int" Nullable="false" />
+          <Property Name="BlockNum" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Uni">
+          <Key>
+            <PropertyRef Name="UniId" />
+          </Key>
+          <Property Name="UniId" Type="int" Nullable="false" />
+          <Property Name="UniName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UniPhone">
+          <Key>
+            <PropertyRef Name="UniId" />
+            <PropertyRef Name="UniPhone" />
+          </Key>
+          <Property Name="UniId" Type="int" Nullable="false" />
+          <Property Name="UniPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPhone">
+          <Key>
+            <PropertyRef Name="Mellicode" />
+            <PropertyRef Name="UserPhone" />
+          </Key>
+          <Property Name="Mellicode" Type="int" Nullable="false" />
+          <Property Name="UserPhone" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Mellicode" />
+          </Key>
+          <Property Name="Mellicode" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="BirthDate" Type="date" Nullable="false" />
+          <Property Name="UserGender" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserAddress" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Block__DormNum__4F12BBB9">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DormPhone__DormN__1C873BEC">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="DormPhone" Type="Self.DormPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="DormPhone">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__JId__4B422AD5">
+          <End Role="Job" Type="Self.Job" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Jid" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="JId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Mellic__4A4E069C">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Mellicode" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Mellicode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monitor__EId__084B3915">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EId" />
+            </Principal>
+            <Dependent Role="Monitor">
+              <PropertyRef Name="EId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monitor__PId__075714DC">
+          <End Role="PublicPlace" Type="Self.PublicPlace" Multiplicity="1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PublicPlace">
+              <PropertyRef Name="PId" />
+            </Principal>
+            <Dependent Role="Monitor">
+              <PropertyRef Name="PId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monitor__Student__3429BB53">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentNum" />
+            </Principal>
+            <Dependent Role="Monitor">
+              <PropertyRef Name="StudentNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PublicPla__DormN__3EDC53F0">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="PublicPlace" Type="Self.PublicPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="PublicPlace">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RequestRo__Stude__361203C5">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="RequestRoom" Type="Self.RequestRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentNum" />
+            </Principal>
+            <Dependent Role="RequestRoom">
+              <PropertyRef Name="StudentNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__37FA4C37">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomNum" />
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="RoomNum" />
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__CityCod__39E294A9">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityCode" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="CityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__LId__370627FE">
+          <End Role="Level" Type="Self.Level" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="LId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="LId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Mellico__38EE7070">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Mellicode" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Mellicode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__MId__3AD6B8E2">
+          <End Role="Major" Type="Self.Major" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Major">
+              <PropertyRef Name="MId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="MId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UniPhone__UniId__318258D2">
+          <End Role="Uni" Type="Self.Uni" Multiplicity="1" />
+          <End Role="UniPhone" Type="Self.UniPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uni">
+              <PropertyRef Name="UniId" />
+            </Principal>
+            <Dependent Role="UniPhone">
+              <PropertyRef Name="UniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPhone__Melli__39237A9A">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UserPhone" Type="Self.UserPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Mellicode" />
+            </Principal>
+            <Dependent Role="UserPhone">
+              <PropertyRef Name="Mellicode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_block_floor">
+          <End Role="Block" Type="Self.Block" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Floor" Type="Self.Floor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Block">
+              <PropertyRef Name="BlockNum" />
+            </Principal>
+            <Dependent Role="Floor">
+              <PropertyRef Name="BlockNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dorm_uni">
+          <End Role="Uni" Type="Self.Uni" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uni">
+              <PropertyRef Name="UniId" />
+            </Principal>
+            <Dependent Role="Dorm">
+              <PropertyRef Name="UniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_et">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmployeeLEtime" Type="Self.EmployeeLEtime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EId" />
+            </Principal>
+            <Dependent Role="EmployeeLEtime">
+              <PropertyRef Name="EId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rcsi">
+          <End Role="Stuff" Type="Self.Stuff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReportCondition" Type="Self.ReportCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stuff">
+              <PropertyRef Name="SId" />
+            </Principal>
+            <Dependent Role="ReportCondition">
+              <PropertyRef Name="SId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rcsn">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReportCondition" Type="Self.ReportCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentNum" />
+            </Principal>
+            <Dependent Role="ReportCondition">
+              <PropertyRef Name="StudentNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_room_floor">
+          <End Role="Floor" Type="Self.Floor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Floor">
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rrr">
+          <End Role="Room" Type="Self.Room" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RequestRoom" Type="Self.RequestRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomNum" />
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Principal>
+            <Dependent Role="RequestRoom">
+              <PropertyRef Name="RoomNum" />
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_st">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentLEtime" Type="Self.StudentLEtime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentNum" />
+            </Principal>
+            <Dependent Role="StudentLEtime">
+              <PropertyRef Name="StudentNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_stuff_block_floor">
+          <End Role="Floor" Type="Self.Floor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stuff" Type="Self.Stuff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Floor">
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Principal>
+            <Dependent Role="Stuff">
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DormitoryDatabaseModelStoreContainer">
+          <EntitySet Name="Block" EntityType="Self.Block" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dorm" EntityType="Self.Dorm" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DormPhone" EntityType="Self.DormPhone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeLEtime" EntityType="Self.EmployeeLEtime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Floor" EntityType="Self.Floor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Level" EntityType="Self.Level" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Major" EntityType="Self.Major" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Monitor" EntityType="Self.Monitor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PublicPlace" EntityType="Self.PublicPlace" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportCondition" EntityType="Self.ReportCondition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RequestRoom" EntityType="Self.RequestRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StudentLEtime" EntityType="Self.StudentLEtime" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stuff" EntityType="Self.Stuff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uni" EntityType="Self.Uni" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniPhone" EntityType="Self.UniPhone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPhone" EntityType="Self.UserPhone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Block__DormNum__4F12BBB9" Association="Self.FK__Block__DormNum__4F12BBB9">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="Block" EntitySet="Block" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DormPhone__DormN__1C873BEC" Association="Self.FK__DormPhone__DormN__1C873BEC">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="DormPhone" EntitySet="DormPhone" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__JId__4B422AD5" Association="Self.FK__Employee__JId__4B422AD5">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Mellic__4A4E069C" Association="Self.FK__Employee__Mellic__4A4E069C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monitor__EId__084B3915" Association="Self.FK__Monitor__EId__084B3915">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Monitor" EntitySet="Monitor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monitor__PId__075714DC" Association="Self.FK__Monitor__PId__075714DC">
+            <End Role="PublicPlace" EntitySet="PublicPlace" />
+            <End Role="Monitor" EntitySet="Monitor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monitor__Student__3429BB53" Association="Self.FK__Monitor__Student__3429BB53">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Monitor" EntitySet="Monitor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PublicPla__DormN__3EDC53F0" Association="Self.FK__PublicPla__DormN__3EDC53F0">
+            <End Role="Dorm" EntitySet="Dorm" />
+            <End Role="PublicPlace" EntitySet="PublicPlace" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RequestRo__Stude__361203C5" Association="Self.FK__RequestRo__Stude__361203C5">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="RequestRoom" EntitySet="RequestRoom" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__37FA4C37" Association="Self.FK__Student__37FA4C37">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__CityCod__39E294A9" Association="Self.FK__Student__CityCod__39E294A9">
+            <End Role="City" EntitySet="City" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__LId__370627FE" Association="Self.FK__Student__LId__370627FE">
+            <End Role="Level" EntitySet="Level" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Mellico__38EE7070" Association="Self.FK__Student__Mellico__38EE7070">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__MId__3AD6B8E2" Association="Self.FK__Student__MId__3AD6B8E2">
+            <End Role="Major" EntitySet="Major" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UniPhone__UniId__318258D2" Association="Self.FK__UniPhone__UniId__318258D2">
+            <End Role="Uni" EntitySet="Uni" />
+            <End Role="UniPhone" EntitySet="UniPhone" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPhone__Melli__39237A9A" Association="Self.FK__UserPhone__Melli__39237A9A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPhone" EntitySet="UserPhone" />
+          </AssociationSet>
+          <AssociationSet Name="fk_block_floor" Association="Self.fk_block_floor">
+            <End Role="Block" EntitySet="Block" />
+            <End Role="Floor" EntitySet="Floor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dorm_uni" Association="Self.fk_dorm_uni">
+            <End Role="Uni" EntitySet="Uni" />
+            <End Role="Dorm" EntitySet="Dorm" />
+          </AssociationSet>
+          <AssociationSet Name="fk_et" Association="Self.fk_et">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="EmployeeLEtime" EntitySet="EmployeeLEtime" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rcsi" Association="Self.fk_rcsi">
+            <End Role="Stuff" EntitySet="Stuff" />
+            <End Role="ReportCondition" EntitySet="ReportCondition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rcsn" Association="Self.fk_rcsn">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ReportCondition" EntitySet="ReportCondition" />
+          </AssociationSet>
+          <AssociationSet Name="fk_room_floor" Association="Self.fk_room_floor">
+            <End Role="Floor" EntitySet="Floor" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rrr" Association="Self.fk_rrr">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="RequestRoom" EntitySet="RequestRoom" />
+          </AssociationSet>
+          <AssociationSet Name="fk_st" Association="Self.fk_st">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="StudentLEtime" EntitySet="StudentLEtime" />
+          </AssociationSet>
+          <AssociationSet Name="fk_stuff_block_floor" Association="Self.fk_stuff_block_floor">
+            <End Role="Floor" EntitySet="Floor" />
+            <End Role="Stuff" EntitySet="Stuff" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DormitoryDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Block">
+          <Key>
+            <PropertyRef Name="BlockNum" />
+          </Key>
+          <Property Name="BlockNum" Type="Int32" Nullable="false" />
+          <Property Name="DormNum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Dorm" Relationship="Self.FK__Block__DormNum__4F12BBB9" FromRole="Block" ToRole="Dorm" />
+          <NavigationProperty Name="Floors" Relationship="Self.fk_block_floor" FromRole="Block" ToRole="Floor" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityCode" />
+          </Key>
+          <Property Name="CityCode" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Province" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__CityCod__39E294A9" FromRole="City" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Dorm">
+          <Key>
+            <PropertyRef Name="DormNum" />
+          </Key>
+          <Property Name="DormNum" Type="Int32" Nullable="false" />
+          <Property Name="DormName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UniId" Type="Int32" Nullable="false" />
+          <Property Name="DormAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DormGender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Blocks" Relationship="Self.FK__Block__DormNum__4F12BBB9" FromRole="Dorm" ToRole="Block" />
+          <NavigationProperty Name="DormPhones" Relationship="Self.FK__DormPhone__DormN__1C873BEC" FromRole="Dorm" ToRole="DormPhone" />
+          <NavigationProperty Name="PublicPlaces" Relationship="Self.FK__PublicPla__DormN__3EDC53F0" FromRole="Dorm" ToRole="PublicPlace" />
+          <NavigationProperty Name="Uni" Relationship="Self.fk_dorm_uni" FromRole="Dorm" ToRole="Uni" />
+        </EntityType>
+        <EntityType Name="DormPhone">
+          <Key>
+            <PropertyRef Name="DormNum" />
+            <PropertyRef Name="DPhone" />
+          </Key>
+          <Property Name="DormNum" Type="Int32" Nullable="false" />
+          <Property Name="DPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dorm" Relationship="Self.FK__DormPhone__DormN__1C873BEC" FromRole="DormPhone" ToRole="Dorm" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="EId" />
+          </Key>
+          <Property Name="EId" Type="Int32" Nullable="false" />
+          <Property Name="JId" Type="Int32" Nullable="false" />
+          <Property Name="Mellicode" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Job" Relationship="Self.FK__Employee__JId__4B422AD5" FromRole="Employee" ToRole="Job" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Employee__Mellic__4A4E069C" FromRole="Employee" ToRole="Users" />
+          <NavigationProperty Name="Monitors" Relationship="Self.FK__Monitor__EId__084B3915" FromRole="Employee" ToRole="Monitor" />
+          <NavigationProperty Name="EmployeeLEtimes" Relationship="Self.fk_et" FromRole="Employee" ToRole="EmployeeLEtime" />
+        </EntityType>
+        <EntityType Name="EmployeeLEtime">
+          <Key>
+            <PropertyRef Name="EId" />
+            <PropertyRef Name="EntranceTime" />
+          </Key>
+          <Property Name="EId" Type="Int32" Nullable="false" />
+          <Property Name="EntranceTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LeavingTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="Self.fk_et" FromRole="EmployeeLEtime" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Floor">
+          <Key>
+            <PropertyRef Name="FloorNum" />
+            <PropertyRef Name="BlockNum" />
+          </Key>
+          <Property Name="FloorNum" Type="Int32" Nullable="false" />
+          <Property Name="BlockNum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Block" Relationship="Self.fk_block_floor" FromRole="Floor" ToRole="Block" />
+          <NavigationProperty Name="Rooms" Relationship="Self.fk_room_floor" FromRole="Floor" ToRole="Room" />
+          <NavigationProperty Name="Stuffs" Relationship="Self.fk_stuff_block_floor" FromRole="Floor" ToRole="Stuff" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="Jid" />
+          </Key>
+          <Property Name="Jid" Type="Int32" Nullable="false" />
+          <Property Name="JobName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="AccessLevel" Type="Int32" Nullable="false" />
+          <Property Name="workhours" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__JId__4B422AD5" FromRole="Job" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Level">
+          <Key>
+            <PropertyRef Name="LId" />
+          </Key>
+          <Property Name="LId" Type="Int32" Nullable="false" />
+          <Property Name="LevelDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__LId__370627FE" FromRole="Level" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Major">
+          <Key>
+            <PropertyRef Name="MId" />
+          </Key>
+          <Property Name="MId" Type="Int32" Nullable="false" />
+          <Property Name="MName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__MId__3AD6B8E2" FromRole="Major" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Monitor">
+          <Key>
+            <PropertyRef Name="StudentNum" />
+            <PropertyRef Name="PId" />
+          </Key>
+          <Property Name="StudentNum" Type="Int32" Nullable="false" />
+          <Property Name="PId" Type="Int32" Nullable="false" />
+          <Property Name="EId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Monitor__EId__084B3915" FromRole="Monitor" ToRole="Employee" />
+          <NavigationProperty Name="PublicPlace" Relationship="Self.FK__Monitor__PId__075714DC" FromRole="Monitor" ToRole="PublicPlace" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__Monitor__Student__3429BB53" FromRole="Monitor" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="PublicPlace">
+          <Key>
+            <PropertyRef Name="PId" />
+          </Key>
+          <Property Name="PId" Type="Int32" Nullable="false" />
+          <Property Name="OpenTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="CloseTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="DormNum" Type="Int32" Nullable="false" />
+          <Property Name="PType" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dorm" Relationship="Self.FK__PublicPla__DormN__3EDC53F0" FromRole="PublicPlace" ToRole="Dorm" />
+          <NavigationProperty Name="Monitors" Relationship="Self.FK__Monitor__PId__075714DC" FromRole="PublicPlace" ToRole="Monitor" />
+        </EntityType>
+        <EntityType Name="ReportCondition">
+          <Key>
+            <PropertyRef Name="ReportId" />
+          </Key>
+          <Property Name="ReportId" Type="Int32" Nullable="false" />
+          <Property Name="StudentNum" Type="Int32" Nullable="false" />
+          <Property Name="SId" Type="Int32" Nullable="false" />
+          <Property Name="Condition" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReportCDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ConditionStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Stuff" Relationship="Self.fk_rcsi" FromRole="ReportCondition" ToRole="Stuff" />
+          <NavigationProperty Name="Student" Relationship="Self.fk_rcsn" FromRole="ReportCondition" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="RequestRoom">
+          <Key>
+            <PropertyRef Name="RequestNum" />
+          </Key>
+          <Property Name="RequestNum" Type="Int32" Nullable="false" />
+          <Property Name="StudentNum" Type="Int32" Nullable="false" />
+          <Property Name="RoomNum" Type="Int32" Nullable="false" />
+          <Property Name="BlockNum" Type="Int32" Nullable="false" />
+          <Property Name="FloorNum" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="RRType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RRStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Student" Relationship="Self.FK__RequestRo__Stude__361203C5" FromRole="RequestRoom" ToRole="Student" />
+          <NavigationProperty Name="Room" Relationship="Self.fk_rrr" FromRole="RequestRoom" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="RoomNum" />
+            <PropertyRef Name="FloorNum" />
+            <PropertyRef Name="BlockNum" />
+          </Key>
+          <Property Name="RoomNum" Type="Int32" Nullable="false" />
+          <Property Name="FloorNum" Type="Int32" Nullable="false" />
+          <Property Name="BlockNum" Type="Int32" Nullable="false" />
+          <Property Name="RoomPrice" Type="Int32" Nullable="false" />
+          <Property Name="Capacity" Type="Int32" Nullable="false" />
+          <Property Name="OpenCapacity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Floor" Relationship="Self.fk_room_floor" FromRole="Room" ToRole="Floor" />
+          <NavigationProperty Name="RequestRooms" Relationship="Self.fk_rrr" FromRole="Room" ToRole="RequestRoom" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__37FA4C37" FromRole="Room" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentNum" />
+          </Key>
+          <Property Name="StudentNum" Type="Int32" Nullable="false" />
+          <Property Name="Paid" Type="Boolean" Nullable="false" />
+          <Property Name="EnteranceYear" Type="Int32" Nullable="false" />
+          <Property Name="RoomNum" Type="Int32" />
+          <Property Name="CityCode" Type="Int32" Nullable="false" />
+          <Property Name="MId" Type="Int32" Nullable="false" />
+          <Property Name="LId" Type="Int32" Nullable="false" />
+          <Property Name="FloorNum" Type="Int32" />
+          <Property Name="BlockNum" Type="Int32" />
+          <Property Name="Mellicode" Type="Int32" Nullable="false" />
+          <Property Name="DNType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Student__CityCod__39E294A9" FromRole="Student" ToRole="City" />
+          <NavigationProperty Name="Level" Relationship="Self.FK__Student__LId__370627FE" FromRole="Student" ToRole="Level" />
+          <NavigationProperty Name="Major" Relationship="Self.FK__Student__MId__3AD6B8E2" FromRole="Student" ToRole="Major" />
+          <NavigationProperty Name="Monitors" Relationship="Self.FK__Monitor__Student__3429BB53" FromRole="Student" ToRole="Monitor" />
+          <NavigationProperty Name="ReportConditions" Relationship="Self.fk_rcsn" FromRole="Student" ToRole="ReportCondition" />
+          <NavigationProperty Name="RequestRooms" Relationship="Self.FK__RequestRo__Stude__361203C5" FromRole="Student" ToRole="RequestRoom" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__Student__37FA4C37" FromRole="Student" ToRole="Room" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Student__Mellico__38EE7070" FromRole="Student" ToRole="Users" />
+          <NavigationProperty Name="StudentLEtimes" Relationship="Self.fk_st" FromRole="Student" ToRole="StudentLEtime" />
+        </EntityType>
+        <EntityType Name="StudentLEtime">
+          <Key>
+            <PropertyRef Name="StudentNum" />
+            <PropertyRef Name="EntranceTime" />
+          </Key>
+          <Property Name="StudentNum" Type="Int32" Nullable="false" />
+          <Property Name="EntranceTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LeavingTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Student" Relationship="Self.fk_st" FromRole="StudentLEtime" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Stuff">
+          <Key>
+            <PropertyRef Name="SId" />
+          </Key>
+          <Property Name="SId" Type="Int32" Nullable="false" />
+          <Property Name="StufName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FloorNum" Type="Int32" Nullable="false" />
+          <Property Name="BlockNum" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Floor" Relationship="Self.fk_stuff_block_floor" FromRole="Stuff" ToRole="Floor" />
+          <NavigationProperty Name="ReportConditions" Relationship="Self.fk_rcsi" FromRole="Stuff" ToRole="ReportCondition" />
+        </EntityType>
+        <EntityType Name="Uni">
+          <Key>
+            <PropertyRef Name="UniId" />
+          </Key>
+          <Property Name="UniId" Type="Int32" Nullable="false" />
+          <Property Name="UniName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Dorms" Relationship="Self.fk_dorm_uni" FromRole="Uni" ToRole="Dorm" />
+          <NavigationProperty Name="UniPhones" Relationship="Self.FK__UniPhone__UniId__318258D2" FromRole="Uni" ToRole="UniPhone" />
+        </EntityType>
+        <EntityType Name="UniPhone">
+          <Key>
+            <PropertyRef Name="UniId" />
+            <PropertyRef Name="UniPhone1" />
+          </Key>
+          <Property Name="UniId" Type="Int32" Nullable="false" />
+          <Property Name="UniPhone1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Uni" Relationship="Self.FK__UniPhone__UniId__318258D2" FromRole="UniPhone" ToRole="Uni" />
+        </EntityType>
+        <EntityType Name="UserPhone">
+          <Key>
+            <PropertyRef Name="Mellicode" />
+            <PropertyRef Name="UserPhone1" />
+          </Key>
+          <Property Name="Mellicode" Type="Int32" Nullable="false" />
+          <Property Name="UserPhone1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UserPhone__Melli__39237A9A" FromRole="UserPhone" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Mellicode" />
+          </Key>
+          <Property Name="Mellicode" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserGender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Mellic__4A4E069C" FromRole="Users" ToRole="Employee" />
+          <NavigationProperty Name="Students" Relationship="Self.FK__Student__Mellico__38EE7070" FromRole="Users" ToRole="Student" />
+          <NavigationProperty Name="UserPhones" Relationship="Self.FK__UserPhone__Melli__39237A9A" FromRole="Users" ToRole="UserPhone" />
+        </EntityType>
+        <Association Name="FK__Block__DormNum__4F12BBB9">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="Block" Type="Self.Block" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="Block">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_block_floor">
+          <End Role="Block" Type="Self.Block" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Floor" Type="Self.Floor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Block">
+              <PropertyRef Name="BlockNum" />
+            </Principal>
+            <Dependent Role="Floor">
+              <PropertyRef Name="BlockNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__CityCod__39E294A9">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="CityCode" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="CityCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DormPhone__DormN__1C873BEC">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="DormPhone" Type="Self.DormPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="DormPhone">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PublicPla__DormN__3EDC53F0">
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="1" />
+          <End Role="PublicPlace" Type="Self.PublicPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dorm">
+              <PropertyRef Name="DormNum" />
+            </Principal>
+            <Dependent Role="PublicPlace">
+              <PropertyRef Name="DormNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_dorm_uni">
+          <End Role="Uni" Type="Self.Uni" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Dorm" Type="Self.Dorm" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uni">
+              <PropertyRef Name="UniId" />
+            </Principal>
+            <Dependent Role="Dorm">
+              <PropertyRef Name="UniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__JId__4B422AD5">
+          <End Role="Job" Type="Self.Job" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="Jid" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="JId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Mellic__4A4E069C">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Mellicode" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Mellicode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monitor__EId__084B3915">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EId" />
+            </Principal>
+            <Dependent Role="Monitor">
+              <PropertyRef Name="EId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_et">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EmployeeLEtime" Type="Self.EmployeeLEtime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EId" />
+            </Principal>
+            <Dependent Role="EmployeeLEtime">
+              <PropertyRef Name="EId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_room_floor">
+          <End Role="Floor" Type="Self.Floor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Floor">
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_stuff_block_floor">
+          <End Role="Floor" Type="Self.Floor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stuff" Type="Self.Stuff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Floor">
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Principal>
+            <Dependent Role="Stuff">
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__LId__370627FE">
+          <End Role="Level" Type="Self.Level" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Level">
+              <PropertyRef Name="LId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="LId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__MId__3AD6B8E2">
+          <End Role="Major" Type="Self.Major" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Major">
+              <PropertyRef Name="MId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="MId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monitor__PId__075714DC">
+          <End Role="PublicPlace" Type="Self.PublicPlace" Multiplicity="1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PublicPlace">
+              <PropertyRef Name="PId" />
+            </Principal>
+            <Dependent Role="Monitor">
+              <PropertyRef Name="PId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Monitor__Student__3429BB53">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Monitor" Type="Self.Monitor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentNum" />
+            </Principal>
+            <Dependent Role="Monitor">
+              <PropertyRef Name="StudentNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rcsi">
+          <End Role="Stuff" Type="Self.Stuff" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReportCondition" Type="Self.ReportCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stuff">
+              <PropertyRef Name="SId" />
+            </Principal>
+            <Dependent Role="ReportCondition">
+              <PropertyRef Name="SId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rcsn">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReportCondition" Type="Self.ReportCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentNum" />
+            </Principal>
+            <Dependent Role="ReportCondition">
+              <PropertyRef Name="StudentNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RequestRo__Stude__361203C5">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="RequestRoom" Type="Self.RequestRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentNum" />
+            </Principal>
+            <Dependent Role="RequestRoom">
+              <PropertyRef Name="StudentNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_rrr">
+          <End Role="Room" Type="Self.Room" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RequestRoom" Type="Self.RequestRoom" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomNum" />
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Principal>
+            <Dependent Role="RequestRoom">
+              <PropertyRef Name="RoomNum" />
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__37FA4C37">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomNum" />
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="RoomNum" />
+              <PropertyRef Name="BlockNum" />
+              <PropertyRef Name="FloorNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Student__Mellico__38EE7070">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Mellicode" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="Mellicode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_st">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="StudentLEtime" Type="Self.StudentLEtime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentNum" />
+            </Principal>
+            <Dependent Role="StudentLEtime">
+              <PropertyRef Name="StudentNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UniPhone__UniId__318258D2">
+          <End Role="Uni" Type="Self.Uni" Multiplicity="1" />
+          <End Role="UniPhone" Type="Self.UniPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uni">
+              <PropertyRef Name="UniId" />
+            </Principal>
+            <Dependent Role="UniPhone">
+              <PropertyRef Name="UniId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserPhone__Melli__39237A9A">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UserPhone" Type="Self.UserPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Mellicode" />
+            </Principal>
+            <Dependent Role="UserPhone">
+              <PropertyRef Name="Mellicode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DormitoryDatabaseEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Blocks" EntityType="Self.Block" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Dorms" EntityType="Self.Dorm" />
+          <EntitySet Name="DormPhones" EntityType="Self.DormPhone" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeeLEtimes" EntityType="Self.EmployeeLEtime" />
+          <EntitySet Name="Floors" EntityType="Self.Floor" />
+          <EntitySet Name="Jobs" EntityType="Self.Job" />
+          <EntitySet Name="Levels" EntityType="Self.Level" />
+          <EntitySet Name="Majors" EntityType="Self.Major" />
+          <EntitySet Name="Monitors" EntityType="Self.Monitor" />
+          <EntitySet Name="PublicPlaces" EntityType="Self.PublicPlace" />
+          <EntitySet Name="ReportConditions" EntityType="Self.ReportCondition" />
+          <EntitySet Name="RequestRooms" EntityType="Self.RequestRoom" />
+          <EntitySet Name="Rooms" EntityType="Self.Room" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="StudentLEtimes" EntityType="Self.StudentLEtime" />
+          <EntitySet Name="Stuffs" EntityType="Self.Stuff" />
+          <EntitySet Name="Unis" EntityType="Self.Uni" />
+          <EntitySet Name="UniPhones" EntityType="Self.UniPhone" />
+          <EntitySet Name="UserPhones" EntityType="Self.UserPhone" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Block__DormNum__4F12BBB9" Association="Self.FK__Block__DormNum__4F12BBB9">
+            <End Role="Dorm" EntitySet="Dorms" />
+            <End Role="Block" EntitySet="Blocks" />
+          </AssociationSet>
+          <AssociationSet Name="fk_block_floor" Association="Self.fk_block_floor">
+            <End Role="Block" EntitySet="Blocks" />
+            <End Role="Floor" EntitySet="Floors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__CityCod__39E294A9" Association="Self.FK__Student__CityCod__39E294A9">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DormPhone__DormN__1C873BEC" Association="Self.FK__DormPhone__DormN__1C873BEC">
+            <End Role="Dorm" EntitySet="Dorms" />
+            <End Role="DormPhone" EntitySet="DormPhones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PublicPla__DormN__3EDC53F0" Association="Self.FK__PublicPla__DormN__3EDC53F0">
+            <End Role="Dorm" EntitySet="Dorms" />
+            <End Role="PublicPlace" EntitySet="PublicPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="fk_dorm_uni" Association="Self.fk_dorm_uni">
+            <End Role="Uni" EntitySet="Unis" />
+            <End Role="Dorm" EntitySet="Dorms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__JId__4B422AD5" Association="Self.FK__Employee__JId__4B422AD5">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Mellic__4A4E069C" Association="Self.FK__Employee__Mellic__4A4E069C">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monitor__EId__084B3915" Association="Self.FK__Monitor__EId__084B3915">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="Monitor" EntitySet="Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="fk_et" Association="Self.fk_et">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeLEtime" EntitySet="EmployeeLEtimes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_room_floor" Association="Self.fk_room_floor">
+            <End Role="Floor" EntitySet="Floors" />
+            <End Role="Room" EntitySet="Rooms" />
+          </AssociationSet>
+          <AssociationSet Name="fk_stuff_block_floor" Association="Self.fk_stuff_block_floor">
+            <End Role="Floor" EntitySet="Floors" />
+            <End Role="Stuff" EntitySet="Stuffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__LId__370627FE" Association="Self.FK__Student__LId__370627FE">
+            <End Role="Level" EntitySet="Levels" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__MId__3AD6B8E2" Association="Self.FK__Student__MId__3AD6B8E2">
+            <End Role="Major" EntitySet="Majors" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monitor__PId__075714DC" Association="Self.FK__Monitor__PId__075714DC">
+            <End Role="PublicPlace" EntitySet="PublicPlaces" />
+            <End Role="Monitor" EntitySet="Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Monitor__Student__3429BB53" Association="Self.FK__Monitor__Student__3429BB53">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Monitor" EntitySet="Monitors" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rcsi" Association="Self.fk_rcsi">
+            <End Role="Stuff" EntitySet="Stuffs" />
+            <End Role="ReportCondition" EntitySet="ReportConditions" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rcsn" Association="Self.fk_rcsn">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="ReportCondition" EntitySet="ReportConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RequestRo__Stude__361203C5" Association="Self.FK__RequestRo__Stude__361203C5">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="RequestRoom" EntitySet="RequestRooms" />
+          </AssociationSet>
+          <AssociationSet Name="fk_rrr" Association="Self.fk_rrr">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="RequestRoom" EntitySet="RequestRooms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__37FA4C37" Association="Self.FK__Student__37FA4C37">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Student__Mellico__38EE7070" Association="Self.FK__Student__Mellico__38EE7070">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="fk_st" Association="Self.fk_st">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="StudentLEtime" EntitySet="StudentLEtimes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UniPhone__UniId__318258D2" Association="Self.FK__UniPhone__UniId__318258D2">
+            <End Role="Uni" EntitySet="Unis" />
+            <End Role="UniPhone" EntitySet="UniPhones" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserPhone__Melli__39237A9A" Association="Self.FK__UserPhone__Melli__39237A9A">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserPhone" EntitySet="UserPhones" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DormitoryDatabaseModelStoreContainer" CdmEntityContainer="DormitoryDatabaseEntities3">
+          <EntitySetMapping Name="Blocks">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Block">
+              <MappingFragment StoreEntitySet="Block">
+                <ScalarProperty Name="BlockNum" ColumnName="BlockNum" />
+                <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dorms">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Dorm">
+              <MappingFragment StoreEntitySet="Dorm">
+                <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+                <ScalarProperty Name="DormName" ColumnName="DormName" />
+                <ScalarProperty Name="UniId" ColumnName="UniId" />
+                <ScalarProperty Name="DormAddress" ColumnName="DormAddress" />
+                <ScalarProperty Name="DormGender" ColumnName="DormGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DormPhones">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.DormPhone">
+              <MappingFragment StoreEntitySet="DormPhone">
+                <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+                <ScalarProperty Name="DPhone" ColumnName="DPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="EId" ColumnName="EId" />
+                <ScalarProperty Name="JId" ColumnName="JId" />
+                <ScalarProperty Name="Mellicode" ColumnName="Mellicode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeLEtimes">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.EmployeeLEtime">
+              <MappingFragment StoreEntitySet="EmployeeLEtime">
+                <ScalarProperty Name="EId" ColumnName="EId" />
+                <ScalarProperty Name="EntranceTime" ColumnName="EntranceTime" />
+                <ScalarProperty Name="LeavingTime" ColumnName="LeavingTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Floors">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Floor">
+              <MappingFragment StoreEntitySet="Floor">
+                <ScalarProperty Name="FloorNum" ColumnName="FloorNum" />
+                <ScalarProperty Name="BlockNum" ColumnName="BlockNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="Jid" ColumnName="Jid" />
+                <ScalarProperty Name="JobName" ColumnName="JobName" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+                <ScalarProperty Name="workhours" ColumnName="workhours" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Levels">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Level">
+              <MappingFragment StoreEntitySet="Level">
+                <ScalarProperty Name="LId" ColumnName="LId" />
+                <ScalarProperty Name="LevelDescription" ColumnName="LevelDescription" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Majors">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Major">
+              <MappingFragment StoreEntitySet="Major">
+                <ScalarProperty Name="MId" ColumnName="MId" />
+                <ScalarProperty Name="MName" ColumnName="MName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Monitors">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Monitor">
+              <MappingFragment StoreEntitySet="Monitor">
+                <ScalarProperty Name="StudentNum" ColumnName="StudentNum" />
+                <ScalarProperty Name="PId" ColumnName="PId" />
+                <ScalarProperty Name="EId" ColumnName="EId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PublicPlaces">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.PublicPlace">
+              <MappingFragment StoreEntitySet="PublicPlace">
+                <ScalarProperty Name="PId" ColumnName="PId" />
+                <ScalarProperty Name="OpenTime" ColumnName="OpenTime" />
+                <ScalarProperty Name="CloseTime" ColumnName="CloseTime" />
+                <ScalarProperty Name="DormNum" ColumnName="DormNum" />
+                <ScalarProperty Name="PType" ColumnName="PType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportConditions">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.ReportCondition">
+              <MappingFragment StoreEntitySet="ReportCondition">
+                <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+                <ScalarProperty Name="StudentNum" ColumnName="StudentNum" />
+                <ScalarProperty Name="SId" ColumnName="SId" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="ReportCDate" ColumnName="ReportCDate" />
+                <ScalarProperty Name="ConditionStatus" ColumnName="ConditionStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RequestRooms">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.RequestRoom">
+              <MappingFragment StoreEntitySet="RequestRoom">
+                <ScalarProperty Name="RequestNum" ColumnName="RequestNum" />
+                <ScalarProperty Name="StudentNum" ColumnName="StudentNum" />
+                <ScalarProperty Name="RoomNum" ColumnName="RoomNum" />
+                <ScalarProperty Name="BlockNum" ColumnName="BlockNum" />
+                <ScalarProperty Name="FloorNum" ColumnName="FloorNum" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="RRType" ColumnName="RRType" />
+                <ScalarProperty Name="RRStatus" ColumnName="RRStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rooms">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="RoomNum" ColumnName="RoomNum" />
+                <ScalarProperty Name="FloorNum" ColumnName="FloorNum" />
+                <ScalarProperty Name="BlockNum" ColumnName="BlockNum" />
+                <ScalarProperty Name="RoomPrice" ColumnName="RoomPrice" />
+                <ScalarProperty Name="Capacity" ColumnName="Capacity" />
+                <ScalarProperty Name="OpenCapacity" ColumnName="OpenCapacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentNum" ColumnName="StudentNum" />
+                <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="EnteranceYear" ColumnName="EnteranceYear" />
+                <ScalarProperty Name="RoomNum" ColumnName="RoomNum" />
+                <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+                <ScalarProperty Name="MId" ColumnName="MId" />
+                <ScalarProperty Name="LId" ColumnName="LId" />
+                <ScalarProperty Name="FloorNum" ColumnName="FloorNum" />
+                <ScalarProperty Name="BlockNum" ColumnName="BlockNum" />
+                <ScalarProperty Name="Mellicode" ColumnName="Mellicode" />
+                <ScalarProperty Name="DNType" ColumnName="DNType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StudentLEtimes">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.StudentLEtime">
+              <MappingFragment StoreEntitySet="StudentLEtime">
+                <ScalarProperty Name="StudentNum" ColumnName="StudentNum" />
+                <ScalarProperty Name="EntranceTime" ColumnName="EntranceTime" />
+                <ScalarProperty Name="LeavingTime" ColumnName="LeavingTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stuffs">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Stuff">
+              <MappingFragment StoreEntitySet="Stuff">
+                <ScalarProperty Name="SId" ColumnName="SId" />
+                <ScalarProperty Name="StufName" ColumnName="StufName" />
+                <ScalarProperty Name="FloorNum" ColumnName="FloorNum" />
+                <ScalarProperty Name="BlockNum" ColumnName="BlockNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unis">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.Uni">
+              <MappingFragment StoreEntitySet="Uni">
+                <ScalarProperty Name="UniId" ColumnName="UniId" />
+                <ScalarProperty Name="UniName" ColumnName="UniName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniPhones">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.UniPhone">
+              <MappingFragment StoreEntitySet="UniPhone">
+                <ScalarProperty Name="UniId" ColumnName="UniId" />
+                <ScalarProperty Name="UniPhone1" ColumnName="UniPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPhones">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.UserPhone">
+              <MappingFragment StoreEntitySet="UserPhone">
+                <ScalarProperty Name="Mellicode" ColumnName="Mellicode" />
+                <ScalarProperty Name="UserPhone1" ColumnName="UserPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DormitoryDatabaseModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Mellicode" ColumnName="Mellicode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="UserGender" ColumnName="UserGender" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
