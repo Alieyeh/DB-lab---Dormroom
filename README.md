@@ -1,3 +1,3 @@
-\textbf{Dormitory - database laboratory project}
+DORMITORY - DATABASE LABORATORY PROJECT
 
 by: Alieyeh Sarabandi and Termeh Tabatabai
